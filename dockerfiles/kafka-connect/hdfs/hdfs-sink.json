@@ -1,0 +1,17 @@
+{
+    "name": "hdfs-sink-connector",
+    "config": {
+      "connector.class": "io.confluent.connect.hdfs.HdfsSinkConnector",
+      "tasks.max": "1",
+      "topics": "bitcoin",
+      "hdfs.url": "hdfs://hadoop:9000",
+      "flush.size": "10",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "format.class": "io.confluent.connect.hdfs.parquet.ParquetFormat",
+      "logs.dir": "/kafka/logs",
+      "topics.dir": "/kafka/topics",
+      "partitioner.class": "io.confluent.connect.storage.partitioner.DefaultPartitioner"
+    }
+  }
+  

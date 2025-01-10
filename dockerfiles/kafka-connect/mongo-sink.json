@@ -1,0 +1,15 @@
+{
+  "name": "mongo-sink-connector",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "tasks.max": "1",
+    "topics": "bitcoin",
+    "connection.uri": "mongodb://root:root@mongodb-1:27017",
+    "database": "kafka",
+    "collection": "bitcoin_data",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "writemodel.strategy": "com.mongodb.kafka.connect.sink.writemodel.strategy.ReplaceOneDefaultStrategy",
+    "replace.one.strategy.filter.field.name": "_id"
+  }
+}
