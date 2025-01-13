@@ -37,4 +37,24 @@ else
   cat $CURL_OUTPUT >> $LOG_FILE
 fi
 
+RESPONSE=$(curl -s -o $CURL_OUTPUT -w "%{http_code}" -X POST -H "Content-Type: application/json" --data @/tmp/mongo-source.json http://localhost:8083/connectors 2>$CURL_ERROR)
+
+if [ "$RESPONSE" -ne 201 ]; then
+  echo "Error al registrar el conector. Código de respuesta HTTP: $RESPONSE" | tee -a $LOG_FILE >&2
+  echo "Respuesta del servidor:" >> $LOG_FILE
+  if [ -f $CURL_OUTPUT ]; then
+    cat $CURL_OUTPUT >> $LOG_FILE
+  else
+    echo "No se generó una respuesta válida del servidor." >> $LOG_FILE
+  fi
+  echo "Errores de CURL:" >> $LOG_FILE
+  if [ -f $CURL_ERROR ]; then
+    cat $CURL_ERROR >> $LOG_FILE
+  fi
+else
+  echo "Conector registrado exitosamente." | tee -a $LOG_FILE
+  echo "Respuesta del servidor:" >> $LOG_FILE
+  cat $CURL_OUTPUT >> $LOG_FILE
+fi
+
 echo "Proceso completado. Los resultados se han registrado en $LOG_FILE."

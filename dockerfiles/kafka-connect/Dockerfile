@@ -11,6 +11,7 @@ EXPOSE 8083
 
 # Registrar automáticamente el conector
 COPY mongo-sink.json /tmp/
+COPY mongo-source.json /tmp/
 COPY register-mongo-connector.sh /usr/bin/
 COPY entrypoint.sh /usr/bin/
 
