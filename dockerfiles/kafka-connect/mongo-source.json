@@ -9,7 +9,7 @@
     "key.converter.schemas.enable": false,
     "value.converter.schemas.enable": false,
     "key.converter": "org.apache.kafka.connect.storage.StringConverter",
-    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
-
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "pipeline": "[{\"$project\": { \"fullDocument._id\": 0}}]"
   }
 }
