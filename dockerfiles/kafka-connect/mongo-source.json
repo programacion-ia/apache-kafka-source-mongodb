@@ -5,6 +5,7 @@
     "connection.uri": "mongodb://root:root@mongodb-1:27017",
     "database": "kafka",
     "collection": "bitcoin_data",
+    "startup.mode": "copy_existing",
     "publish.full.document.only": true,
     "key.converter.schemas.enable": false,
     "value.converter.schemas.enable": false,
