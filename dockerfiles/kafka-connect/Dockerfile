@@ -12,4 +12,11 @@ EXPOSE 8083
 # Registrar automáticamente el conector
 COPY mongo-sink.json /tmp/
 COPY register-mongo-connector.sh /usr/bin/
-ENTRYPOINT ["bash", "-c", "/usr/bin/register-mongo-connector.sh && /etc/confluent/docker/run"]
+COPY entrypoint.sh /usr/bin/
+
+USER root
+RUN chmod +x /usr/bin/entrypoint.sh /usr/bin/register-mongo-connector.sh
+
+USER appuser
+ENTRYPOINT ["bash", "-c", "/usr/bin/entrypoint.sh"]
+
